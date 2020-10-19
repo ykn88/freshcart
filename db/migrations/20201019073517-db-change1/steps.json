@@ -1,0 +1,355 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "UpdateEnum",
+      "enum": "Status",
+      "createdValues": [
+        "NULL"
+      ]
+    },
+    {
+      "tag": "CreateModel",
+      "model": "TopSellingItem"
+    },
+    {
+      "tag": "CreateField",
+      "model": "TopSellingItem",
+      "field": "id",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "TopSellingItem",
+          "field": "id"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "TopSellingItem",
+          "field": "id"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "autoincrement()"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "TopSellingItem",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
+      "tag": "CreateField",
+      "model": "TopSellingItem",
+      "field": "createdAt",
+      "type": "DateTime",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "TopSellingItem",
+          "field": "createdAt"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "TopSellingItem",
+          "field": "createdAt"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "now()"
+    },
+    {
+      "tag": "CreateField",
+      "model": "TopSellingItem",
+      "field": "updatedAt",
+      "type": "DateTime",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "TopSellingItem",
+          "field": "updatedAt"
+        },
+        "directive": "updatedAt"
+      }
+    },
+    {
+      "tag": "CreateField",
+      "model": "TopSellingItem",
+      "field": "itemName",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "TopSellingItem",
+      "field": "minQty",
+      "type": "Float",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "TopSellingItem",
+      "field": "user",
+      "type": "User",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "TopSellingItem",
+          "field": "user"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "TopSellingItem",
+          "field": "user"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[userId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "TopSellingItem",
+          "field": "user"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "TopSellingItem",
+      "field": "userId",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "DeleteModel",
+      "model": "Payment"
+    },
+    {
+      "tag": "CreateField",
+      "model": "User",
+      "field": "shopName",
+      "type": "String",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateField",
+      "model": "User",
+      "field": "orderAcceptTime",
+      "type": "DateTime",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateField",
+      "model": "User",
+      "field": "topItems",
+      "type": "TopSellingItem",
+      "arity": "List"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "User",
+      "field": "mostSell"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "User",
+      "field": "payments"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "User",
+      "field": "openingHrs",
+      "type": "DateTime"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "User",
+      "field": "closingHrs",
+      "type": "DateTime"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "Product",
+      "field": "cart",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Cart",
+      "field": "productPrice",
+      "type": "Float",
+      "arity": "Required"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "Cart",
+      "field": "quantity",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Order",
+      "field": "totalPrice",
+      "type": "Float",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Order",
+      "field": "payMode",
+      "type": "String",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Order",
+      "field": "payStatus",
+      "type": "PayStatus",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Order",
+          "field": "payStatus"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Order",
+          "field": "payStatus"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "PENDING"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Order",
+      "field": "orderStatus",
+      "type": "Status",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Order",
+          "field": "orderStatus"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Order",
+          "field": "orderStatus"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "NULL"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Order",
+      "field": "payment"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Order",
+      "field": "status"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "Order",
+      "field": "phone",
+      "arity": "Optional"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "Order",
+      "field": "address",
+      "arity": "Optional"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "Order",
+      "field": "pinCode",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateField",
+      "model": "OrderDetail",
+      "field": "productPrice",
+      "type": "Float",
+      "arity": "Required"
+    }
+  ]
+}
