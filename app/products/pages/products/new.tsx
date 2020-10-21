@@ -4,6 +4,7 @@ import { Link, useRouter, useMutation, BlitzPage } from "blitz"
 import createProduct from "app/products/mutations/createProduct"
 import ProductForm from "app/products/components/ProductForm"
 import Cart from "app/products/components/Cart"
+import Image from "app/products/components/Image"
 
 const NewProductPage: BlitzPage = () => {
   const router = useRouter()
@@ -33,7 +34,7 @@ const NewProductPage: BlitzPage = () => {
         </Link>
       </p>
 
-
+      <Image />
     </div>
   )
 }
