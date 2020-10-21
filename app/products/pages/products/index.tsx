@@ -7,41 +7,6 @@ import Search from "app/products/components/Search"
 import Product from "app/products/components/Product"
 import Footer from "app/products/components/Footer"
 
-const ITEMS_PER_PAGE = 100
-
-export const ProductsList = () => {
-  const router = useRouter()
-  const page = Number(router.query.page) || 0
-  const [{ products, hasMore }] = usePaginatedQuery(getProducts, {
-    orderBy: { id: "asc" },
-    skip: ITEMS_PER_PAGE * page,
-    take: ITEMS_PER_PAGE,
-  })
-
-  const goToPreviousPage = () => router.push({ query: { page: page - 1 } })
-  const goToNextPage = () => router.push({ query: { page: page + 1 } })
-
-  return (
-    <div>
-      <ul>
-        {products.map((product) => (
-          <li key={product.id}>
-            <Link href="/products/[productId]" as={`/products/${product.id}`}>
-              <a>{product.name}</a>
-            </Link>
-          </li>
-        ))}
-      </ul>
-
-      <button disabled={page === 0} onClick={goToPreviousPage}>
-        Previous
-      </button>
-      <button disabled={!hasMore} onClick={goToNextPage}>
-        Next
-      </button>
-    </div>
-  )
-}
 
 const ProductsPage: BlitzPage = () => {
   return (
@@ -57,8 +22,10 @@ const ProductsPage: BlitzPage = () => {
       </Suspense> */}
       {/* <Header /> */}
       <br/><br/><br/>
-      <Search />
-      <Product />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Search />
+        <Product />
+      </Suspense>
       {/* <Footer /> */}
     </div>
   )
