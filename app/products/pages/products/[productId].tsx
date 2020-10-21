@@ -17,6 +17,7 @@ export const Product = () => {
       <Link href="/products/[productId]/edit" as={`/products/${product.id}/edit`}>
         <a>Edit</a>
       </Link>
+    
 
       <button
         type="button"

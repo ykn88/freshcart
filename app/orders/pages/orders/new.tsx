@@ -3,6 +3,9 @@ import Layout from "app/layouts/Layout"
 import { Link, useRouter, useMutation, BlitzPage } from "blitz"
 import createOrder from "app/orders/mutations/createOrder"
 import OrderForm from "app/orders/components/OrderForm"
+import EmptyCart from "app/orders/components/EmptyCart"
+import Phone from "app/orders/components/Phone"
+import OrderDetails from "app/orders/components/OrderDetails"
 
 const NewOrderPage: BlitzPage = () => {
   const router = useRouter()
@@ -10,7 +13,8 @@ const NewOrderPage: BlitzPage = () => {
 
   return (
     <div>
-      <h1>Create New Order</h1>
+      <br/><br/><br/>
+      {/* <h1>Create New Order</h1>
 
       <OrderForm
         initialValues={{}}
@@ -23,13 +27,21 @@ const NewOrderPage: BlitzPage = () => {
             alert("Error creating order " + JSON.stringify(error, null, 2))
           }
         }}
-      />
+      /> */}
 
-      <p>
+      {/* <p>
         <Link href="/orders">
           <a>Orders</a>
         </Link>
-      </p>
+      </p> */}
+      <EmptyCart />
+      <hr/>
+      <OrderDetails />
+
+    <br/>
+    <hr style={{width:"80%", marginLeft:'2.5rem'}}/>
+    {/* <OrderDetails /> */}
+    <Phone />
     </div>
   )
 }

@@ -2,6 +2,10 @@ import React, { Suspense } from "react"
 import Layout from "app/layouts/Layout"
 import { Link, usePaginatedQuery, useRouter, BlitzPage } from "blitz"
 import getProducts from "app/products/queries/getProducts"
+import Header from "app/products/components/Header"
+import Search from "app/products/components/Search"
+import Product from "app/products/components/Product"
+import Footer from "app/products/components/Footer"
 
 const ITEMS_PER_PAGE = 100
 
@@ -42,15 +46,20 @@ export const ProductsList = () => {
 const ProductsPage: BlitzPage = () => {
   return (
     <div>
-      <p>
+      {/* <p>
         <Link href="/products/new">
           <a>Create Product</a>
         </Link>
-      </p>
+      </p> */}
 
-      <Suspense fallback={<div>Loading...</div>}>
+      {/* <Suspense fallback={<div>Loading...</div>}>
         <ProductsList />
-      </Suspense>
+      </Suspense> */}
+      {/* <Header /> */}
+      <br/><br/><br/>
+      <Search />
+      <Product />
+      {/* <Footer /> */}
     </div>
   )
 }

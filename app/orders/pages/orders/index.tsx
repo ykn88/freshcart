@@ -2,6 +2,7 @@ import React, { Suspense } from "react"
 import Layout from "app/layouts/Layout"
 import { Link, usePaginatedQuery, useRouter, BlitzPage } from "blitz"
 import getOrders from "app/orders/queries/getOrders"
+import Cart from "app/products/components/Cart"
 
 const ITEMS_PER_PAGE = 100
 
@@ -19,6 +20,7 @@ export const OrdersList = () => {
 
   return (
     <div>
+      
       <ul>
         {orders.map((order) => (
           <li key={order.id}>
@@ -49,8 +51,14 @@ const OrdersPage: BlitzPage = () => {
       </p>
 
       <Suspense fallback={<div>Loading...</div>}>
-        <OrdersList />
+      <br />
+      <br />
+      
+        {/* <OrdersList /> */}
+        <Cart />
+      
       </Suspense>
+      
     </div>
   )
 }

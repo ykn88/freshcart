@@ -3,6 +3,7 @@ import Layout from "app/layouts/Layout"
 import { Link, useRouter, useMutation, BlitzPage } from "blitz"
 import createProduct from "app/products/mutations/createProduct"
 import ProductForm from "app/products/components/ProductForm"
+import Cart from "app/products/components/Cart"
 
 const NewProductPage: BlitzPage = () => {
   const router = useRouter()
@@ -10,6 +11,7 @@ const NewProductPage: BlitzPage = () => {
 
   return (
     <div>
+      <br/><br/><br/>
       <h1>Create New Product</h1>
 
       <ProductForm
@@ -30,6 +32,8 @@ const NewProductPage: BlitzPage = () => {
           <a>Products</a>
         </Link>
       </p>
+
+
     </div>
   )
 }

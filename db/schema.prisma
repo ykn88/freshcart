@@ -3,7 +3,7 @@
 
 datasource db {
   provider = "mysql"
-  url      = env("DATABASE_URL")
+  url = env("DATABASE_URL")
 }
 
 generator client {
@@ -19,7 +19,7 @@ model User {
   name           String?
   email          String    @unique
   hashedPassword String?
-  role           String    @default("user")
+  role           Role      @default(user)
   contactNo      String?
   whatsapp       String?
   address        String?
@@ -31,7 +31,14 @@ model User {
   cart           Cart[]
   orders         Order[]
   topItems       TopSellingItem[]
+  verified       Boolean   @default(false)
 }
+
+enum Role {
+  user
+  admin
+}
+
 
 model Session {
   id                 Int       @id @default(autoincrement())
@@ -64,11 +71,16 @@ model Product {
   description String?    
   price       Float      
   stock       Boolean    
-  minQuantity Float?     
-  category    Category   @relation(fields: [catId], references:[id])
-  catId       Int 
+  minQuantity Float?
+  measure     Measure?     
+  category    Category?   @relation(fields: [catId], references:[id])
+  catId       Int? 
   cart        Cart?
-  orderDetail OrderDetail       
+}
+
+enum Measure {
+  perKg
+  perItem
 }
 
 model Cart {
@@ -112,8 +124,7 @@ model OrderDetail {
   quantity  Float    
   order     Order    @relation(fields: [orderId], references: [id])
   orderId   Int
-  product   Product  @relation(fields: [productId], references: [id])
-  productId Int
+  goodsId   Int?
   productPrice Float    
 }
 
@@ -131,3 +142,4 @@ model TopSellingItem {
   user      User     @relation(fields: [userId], references: [id])
   userId    Int      
 }
+
