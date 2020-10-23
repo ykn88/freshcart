@@ -9,19 +9,19 @@ const AddQuantity = ({user, product}) => {
     
     const handleClick = async(quantity:number) => {
         
-        try {
-          const cart = await createCartMutation({data : {
-            user: {connect: {id: user.id}},
-            product: {connect: {id: product.id}},
-            quantity: quantity,
-            productPrice: product.price * quantity,
-          }}, {})
+        // try {
+        //   const cart = await createCartMutation({data : {
+        //     user: {connect: {id: user.id}},
+        //     product: {connect: {id: product.id}},
+        //     quantity: quantity,
+        //     productPrice: product.price * quantity,
+        //   }}, {})
       
-          console.log(cart)
+        //   console.log(cart)
           
-        } catch (error) {
-          alert('Product Already added to cart')
-        }
+        // } catch (error) {
+        //   alert('Product Already added to cart')
+        // }
     
     }
 

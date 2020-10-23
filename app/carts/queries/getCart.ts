@@ -8,7 +8,7 @@ export default async function getCart({ where }: GetCartInput, ctx: Ctx) {
 
   const cart = await db.cart.findFirst({ where })
 
-  if (!cart) throw new NotFoundError()
+  if (!cart) return
 
   return cart
 }
