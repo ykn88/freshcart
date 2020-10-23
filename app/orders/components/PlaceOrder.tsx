@@ -2,25 +2,18 @@ import deleteCart from 'app/carts/mutations/deleteCart'
 import updateCart from 'app/carts/mutations/updateCart'
 import createOrderDetail from 'app/orderDetails/mutations/createOrderDetail'
 import { Router, useMutation } from 'blitz'
-import React from 'react'
+import React, { useEffect } from 'react'
 import createOrder from '../mutations/createOrder'
 import updateOrder from '../mutations/updateOrder'
 
-const PlaceOrder = (carts, {user}) => {
-    let orderDetails = []
-    let deleted = []
+const PlaceOrder = (carts) => {
+
+    window.localStorage.setItem('array', JSON.stringify(carts))
     let i:number = 0
     let amount = 0
-    
-    carts.cart.length > 0 && carts.cart.forEach(cart => {
-        amount += cart.productPrice
-    })
-    console.log(carts.user)
-    
+    const cart = JSON.parse(window.localStorage.getItem('cart'))
+    cart.forEach(cart => amount += (cart.quantity * cart.productPrice))
     const [createOrderMutation] = useMutation(createOrder)
-    const [createOrderDetailMutation] = useMutation(createOrderDetail)
-    const [updateOrderMutation] = useMutation(updateOrder)
-    const [deleteCartMutation] = useMutation(deleteCart)
     const [updateCartMutation] = useMutation(updateCart)
 
     const handleClick = async() => {
@@ -31,48 +24,32 @@ const PlaceOrder = (carts, {user}) => {
               totalPrice: amount
             }
           })
-    
-          console.log(order)
-          oDetails(order)
-    
+          window.localStorage.setItem('order', JSON.stringify(order))
         } catch (error) {
             console.log(error)      
         }
+        updateCarts()
     }
 
-    const oDetails = async(order) => {
-        try {
-          
-        for(i; i<carts.cart.length; i++){
-          orderDetails[i] = await createOrderDetailMutation({
-            data: {
-              order: {connect: {id: order.id}},
-              goodsId: carts.cart[i].productId,
-              productPrice: carts.cart[i].productPrice,
-              quantity: carts.cart[i].quantity
+    const updateCarts = async() => {
+      try {
+        for( let i = 0; i < cart.length; i++ ) {
+          for( let j = 0; j < carts.cart.length; j++ ) {
+            if (carts.cart[j].productId === cart[i].productId) {
+                const updated = await updateCartMutation ({
+                  where: { id: carts.cart[j].id},
+                  data: { quantity: cart[i].quantity }
+                })
+              console.log(updated)
             }
-          })
+          }
         }
-        console.log(orderDetails)
-  
-        const updated = await updateOrderMutation({
-          where: {id: order.id},
-          data: {orderStatus: "PENDING"}
-        })
-  
-        console.log(updated)
-        let j = 0
-        carts.cart.forEach(async(car) => {
-          deleted[j] = await deleteCartMutation({
-            where: {id: car.id}
-          })
-          j++     
-        })
-        Router.push('/products')
       } catch (error) {
-          console.log(error)
+        console.log(error)
       }
-    }
+      Router.push('/orders/billing')    
+    } 
+
     
     return (
         <div>
