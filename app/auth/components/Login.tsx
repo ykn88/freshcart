@@ -18,7 +18,7 @@ type LoginFormProps = {
     onSuccess?: () => void
 }
 
-const Login = (props: LoginFormProps) => {
+const Login = ({handleRoute}) => {
     const [loginMutation] = useMutation(login)
 
     return (
@@ -33,8 +33,8 @@ const Login = (props: LoginFormProps) => {
             initialValues={{ email: "", password: "" }}
             onSubmit={async (values) => {
                 try {
-                  await loginMutation(values)
-                  props.onSuccess?.()
+                 const user = await loginMutation(values)
+                 handleRoute(user)  
                 } catch (error) {
                   if (error.name === "AuthenticationError") {
                     return { [FORM_ERROR]: "Sorry, those credentials are invalid" }

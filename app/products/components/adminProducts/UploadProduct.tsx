@@ -1,9 +1,8 @@
-
 import React from 'react'
 import { Field, Form } from 'react-final-form';
-import styles from '../../styles/UploadProduct.module.scss'
+import styles from '../../../styles/UploadProduct.module.scss'
 
-const UploadProduct = () => {
+const UploadProduct = ({newProduct}) => {
     return (
         <>
         <div className={styles.mainDiv}>
@@ -12,13 +11,13 @@ const UploadProduct = () => {
             </div>
             <Form onSubmit={(formObj)=>{
                alert("Submitting!!!");
-               console.log(formObj);
+               newProduct(formObj);
            }}>
                {({ handleSubmit})=>(
                    <form onSubmit={handleSubmit} className={styles.form}> 
                         <div className={styles.div}>
-                       <Field name="title">{({ input })=> (
-                       <input placeholder="Title" type="text" {...input} className={styles.input} />)} 
+                       <Field name="name">{({ input })=> (
+                       <input placeholder="name" type="text" {...input} className={styles.input} />)} 
                        </Field>
                        </div>
                        <div className={styles.div3}>
@@ -27,25 +26,40 @@ const UploadProduct = () => {
                        <input placeholder="Price" type="number" {...input} className={styles.input} />)} 
                        </Field>
                        </div>
-                        <div className={styles.div5}>
-                       <Field name="pricePerKg">{({ input })=> (
-                       <input placeholder="Price Per Kg" type="number" {...input} className={styles.input} />)} 
+                       <div className={styles.div5}>
+                       <Field name="measure">{({ input })=> (
+                       <select placeholder="Price Per Kg" type="string" {...input} className={styles.input}>
+                           <option value="0">Select Measure</option>
+                           <option value="perKg">perKg</option>
+                           <option value="perItem">perItem</option>
+                       </select>
+                       )} 
+                       </Field>
+                       </div>
+                       <div className={styles.div5}>
+                       <Field name="category">{({ input })=> (
+                       <select placeholder="category" type="number" {...input} className={styles.input}>
+                           <option value="0">Select Category</option>
+                           <option value="1">Fruits</option>
+                           <option value="2">Vegetable</option>
+                       </select>
+                       )} 
                        </Field>
                        </div>
                        </div>
                        <div className={styles.div}>
-                       <Field name="minQty">{({ input })=> (
+                       <Field name="minQuantity">{({ input })=> (
                        <input placeholder="Set Minimum Quantity" type="number" {...input} className={styles.input}/>)} 
                        </Field>
                        </div>
                        <div className={styles.div4}>
                         <h2 className={styles.uihead}>Upload Image</h2>
-                       <Field name="image">{({ input })=> (
+                       <Field name="imageUrl">{({ input })=> (
                        <input type="file" {...input} className={styles.input}/>)} 
                        </Field>
                        </div>
                        <div className={styles.div6}>
-                       <Field name="desc">{({ input })=> (
+                       <Field name="description">{({ input })=> (
                        <input type="text" placeholder="Description" {...input} className={styles.input}/>)} 
                        </Field>
                        </div>
