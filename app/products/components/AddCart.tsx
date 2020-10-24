@@ -4,7 +4,7 @@ import React from 'react'
 import { number } from 'zod'
 import styles from '../../styles/Product.module.scss'
 
-const AddCart = ({user, product, setShow, setFinal}) => {
+const AddCart = ({user, product, grand, setShow, setFinal, setGrand}) => {
     const addCart = () => {
       console.log(product)
       const newCart = {
@@ -16,6 +16,8 @@ const AddCart = ({user, product, setShow, setFinal}) => {
       setShow(product.id)
       let cart = JSON.parse(window.localStorage.getItem('cart'))
       cart.push(newCart)
+      let amount = product.minQuantity * product.price
+      setGrand(grand + amount)
       window.localStorage.setItem('cart', JSON.stringify(cart))
       let quantity = parseInt(window.localStorage.getItem('quantity'))
       quantity += product.minQuantity

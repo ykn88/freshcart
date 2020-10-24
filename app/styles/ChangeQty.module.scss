@@ -1,0 +1,18 @@
+.buttons{
+    display: flex;
+    justify-content: space-between;
+    width: 40vw;
+    background-color: #ffffff;
+
+    .button1{
+        border: 2px solid #005E2E;;
+        background-color: #D4D4D4;
+        padding: 0rem .8rem;
+        border-radius: 05px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1rem;
+        font-weight: 700;
+    }
+}

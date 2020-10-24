@@ -14,8 +14,8 @@ const Checkout = ({final}) => {
     const [updateCartMutation] = useMutation(updateCart)
     const addToCart = async() => {
         
-       const cart = JSON.parse(window.localStorage.getItem('cart'))
-       try {
+     const cart = JSON.parse(window.localStorage.getItem('cart'))
+        try {
             cart.forEach(async cart => {
                    const created = await createCartMutation({
                        data: {
@@ -28,8 +28,9 @@ const Checkout = ({final}) => {
                 });
                 Router.push('/orders')
             }  catch (error) {
-           alert('product exists in cart')
-       }
+              alert('product exists in cart')
+               Router.push('/orders')
+            }
     }
 
     return (

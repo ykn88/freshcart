@@ -5,19 +5,19 @@ import styles from '../../styles/Product.module.scss'
 import getProducts from '../queries/getProducts'
 import ProductList from './ProductList'
 
-const Product = ({setFinal}) => {
+const Product = ({setFinal, grand, setGrand}) => {
     let basket : []
-    
     const user = useCurrentUser()
-    console.log(user)
     const [{products}] = useQuery(getProducts, {})
         return (
             <>
-                {products.map(product => (
-                    <div key={product.id} className={styles.mainDiv}>
-                      <ProductList product={product} user={user} setFinal={setFinal}/>
-                    </div>    
-                ))}
+                <div>
+                    {products.map(product => (
+                        <div key={product.id} className={styles.mainDiv}>
+                        <ProductList product={product} grand={grand} user={user} setFinal={setFinal} setGrand={setGrand}/>
+                        </div>    
+                    ))}
+                </div>
             </>
         )
     }

@@ -1,0 +1,79 @@
+.mainDiv{
+    width: 85%;
+    margin: auto;
+    // border: 2px solid black;
+    margin-top: 4rem;
+
+    // color
+    $para : #007E3E;
+    $Login : #175959;
+    $forgetPassword : #45F39B;
+    
+
+    .items, .form, .items2{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+        .items2{
+
+            .para2{
+                color: $forgetPassword;
+            }
+
+            .anchor{
+                color: $para;
+                margin-left: .5rem;
+            }
+        }
+    .items{
+        margin-bottom: 3rem;
+
+        .para{
+            margin-top: 2rem;
+            color: $para;
+        }
+
+        .head2{
+            color: $Login;
+
+        }
+    }
+    .form{
+        margin-bottom: 1rem;
+        .button{
+            width: 85%;
+            height: 2rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+            background-color: $para;
+            color: white;
+        }
+        .div, .div2{
+            border-bottom: 2px solid $para;
+            margin-bottom: 1.5rem;
+            width: 85%;
+            display: flex;
+            justify-content: space-between;
+
+        .input{
+            margin-bottom: .2rem;
+            border: none;
+            outline-style: none;
+            color: $para;
+
+            
+            // border-bottom: 2px solid olive;
+        }
+        ::placeholder{
+            color: $para;
+        }
+
+        .logoImg{
+            color: $para;
+        }      
+    }
+    }
+
+}

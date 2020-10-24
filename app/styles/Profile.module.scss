@@ -1,0 +1,77 @@
+.mainDiv{
+    // border: 2px solid black;
+    height: 75vh;
+    width: 85%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    // justify-content: center;
+    align-items: center;
+    margin-top: 25%;
+
+      // color
+      $title: #175959;
+      $inputBackground: #D3EFE1;
+      $inputBorder: #007E3E;
+      $inputPlcaeholder: #007E3E;
+      $button: #007E3E;
+
+
+    .heading{
+        color: $title;
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: .5rem;
+    }
+    .heading2{
+        color: $title;
+        text-align: center;
+        font-size: 1.2rem;
+        margin-bottom: .5rem;
+    }
+    .heading3, .heading5{
+        color: brown;
+        text-align: center;
+        font-size: 1.2rem;
+        margin: .5rem 0;
+    }
+
+    .heading5{
+        font-size: 1.5rem;
+        margin: 1rem 0;
+        color: brown;
+    }
+
+    .heading4{
+        color: $title;
+        text-align: center;
+        font-size: 1.2rem;
+        margin: .5rem 0; 
+
+    }
+
+    .logo{
+        width: 50%;
+        height: 25%;
+        color: #04EB84;
+        margin: 1rem 0;
+
+    }
+
+    .logout{
+        background-color: #007E3E;
+        color: white;
+        width: 100%;
+        padding: .51rem 1rem;
+        font-size: 1.2rem;
+        cursor: pointer;
+        margin-top: 1rem;
+        border: none;
+
+        
+    }
+    .logout:hover{
+        background-color:#04EB84;
+        color: black;
+    }
+}

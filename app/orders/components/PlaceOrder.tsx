@@ -1,12 +1,9 @@
-import deleteCart from 'app/carts/mutations/deleteCart'
 import updateCart from 'app/carts/mutations/updateCart'
-import createOrderDetail from 'app/orderDetails/mutations/createOrderDetail'
-import { Router, useMutation } from 'blitz'
-import React, { useEffect } from 'react'
+import { Router, useMutation, useSession } from 'blitz'
+import React from 'react'
 import createOrder from '../mutations/createOrder'
-import updateOrder from '../mutations/updateOrder'
 
-const PlaceOrder = (carts) => {
+const PlaceOrder = ({carts, value} ) => {
 
     window.localStorage.setItem('array', JSON.stringify(carts))
     let i:number = 0
@@ -15,12 +12,12 @@ const PlaceOrder = (carts) => {
     cart.forEach(cart => amount += (cart.quantity * cart.productPrice))
     const [createOrderMutation] = useMutation(createOrder)
     const [updateCartMutation] = useMutation(updateCart)
-
+    console.log(carts)
     const handleClick = async() => {
         try {
-          const order = await createOrderMutation({
+          const order = await createOrder({
             data: {
-              user: {connect: {id: carts.user.id}},
+              user: {connect: {id: carts[0].userId}},
               totalPrice: amount
             }
           })
@@ -34,10 +31,10 @@ const PlaceOrder = (carts) => {
     const updateCarts = async() => {
       try {
         for( let i = 0; i < cart.length; i++ ) {
-          for( let j = 0; j < carts.cart.length; j++ ) {
-            if (carts.cart[j].productId === cart[i].productId) {
+          for( let j = 0; j < carts.length; j++ ) {
+            if (carts[j].productId === cart[i].productId) {
                 const updated = await updateCartMutation ({
-                  where: { id: carts.cart[j].id},
+                  where: { id: carts[j].id},
                   data: { quantity: cart[i].quantity }
                 })
               console.log(updated)
@@ -53,7 +50,7 @@ const PlaceOrder = (carts) => {
     
     return (
         <div>
-            <button onClick={handleClick}>Place Order</button>
+          <button onClick={handleClick}>Place Order</button>
         </div>
     )
 }

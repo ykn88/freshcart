@@ -7,16 +7,17 @@ import OrderChange from './OrderChange';
 
 let totatlList = []
 
-const CartList = ({cart}) => {
+const CartList = ({cart, setValue, value}) => {
 
     useEffect(() => {
       totatlList = JSON.parse(window.localStorage.getItem('cart'))
     }, [])
     const [basket, setBasket] = useState(cart)
     const [deleteCartMutation] = useMutation(deleteCart)
-    
+    console.log(value)
     const handleClick = async(cart) => {
             totatlList = totatlList.filter(list => list.productId !== basket.productId)
+            setValue(value - basket.quantity)
             setBasket(null)       
             window.localStorage.setItem('cart', JSON.stringify(totatlList)) 
             console.log(totatlList)
@@ -31,7 +32,7 @@ const CartList = ({cart}) => {
 
     return (
             <>  
-              {(totatlList.length === 0 && cart === {}) ? (<EmptyCart />) : (
+              {(totatlList === [] || cart === {}) ? (<EmptyCart />) : (
                 <div>
 
                     {basket === null ? (<div></div>) : (
@@ -48,7 +49,7 @@ const CartList = ({cart}) => {
                                         <h2 className={styles.secondHead}>{basket.product.measure}<span className={styles.span}>{basket.product.price}</span></h2>
                                     </div>
                                     <>
-                                      <OrderChange basket={basket}/>
+                                      <OrderChange basket={basket} setValue={setValue} value={value}/>
                                     </>
                                 </div>
                                 <div className={styles.third}>
