@@ -5,6 +5,7 @@ import createProduct from "app/products/mutations/createProduct"
 import ProductForm from "app/products/components/ProductForm"
 import Cart from "app/products/components/Cart"
 import Image from "app/products/components/Image"
+import UploadProduct from "app/products/components/UploadProduct"
 
 const NewProductPage: BlitzPage = () => {
   const router = useRouter()
@@ -13,7 +14,7 @@ const NewProductPage: BlitzPage = () => {
   return (
     <div>
       <br/><br/><br/>
-      <h1>Create New Product</h1>
+      {/* <h1>Create New Product</h1>
 
       <ProductForm
         initialValues={{}}
@@ -34,7 +35,8 @@ const NewProductPage: BlitzPage = () => {
         </Link>
       </p>
 
-      <Image />
+      <Image /> */}
+      <UploadProduct />
     </div>
   )
 }

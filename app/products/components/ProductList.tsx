@@ -9,7 +9,7 @@ import AddCart from './AddCart'
 import ChangeQty from './ChangeQty'
 
 let basket: []
-const ProductList = ({product, user, setFinal}) => {
+const ProductList = ({product, grand, user, setFinal, setGrand}) => {
     const [test, setTest] = useState(-1)
     const [amount, setAmount] = useState(product.minQuantity)
     useEffect(() => {
@@ -46,11 +46,11 @@ const ProductList = ({product, user, setFinal}) => {
                     <div>
                     {(show === product.id || test === product.id) ? (
                         <div>
-                        <ChangeQty amount={amount} product={product} setFinal={setFinal}/>
+                        <ChangeQty amount={amount} grand={grand} product={product} setFinal={setFinal} setGrand={setGrand}/>
                         </div>
                      ) : (
                         <div>
-                        <AddCart user={user} product={product} setShow={setShow} setFinal={setFinal}/>
+                        <AddCart user={user} product={product} grand={grand} setShow={setShow} setFinal={setFinal} setGrand={setGrand}/>
                         </div>
                     )}
                     </div>

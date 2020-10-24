@@ -2,16 +2,29 @@ import deleteCart from 'app/carts/mutations/deleteCart'
 import createOrderDetail from 'app/orderDetails/mutations/createOrderDetail'
 import updateOrder from 'app/orders/mutations/updateOrder'
 import { BlitzPage, Router, useMutation } from 'blitz'
-import React, { Suspense } from 'react'
+import React, { Suspense, useEffect } from 'react'
+
+let cart
+let order
+let carts 
+
 
 export const Finalize = () => {
+    useEffect(() => {
+        // cart = JSON.parse(global.localStorage.getItem('cart'))
+        // order = JSON.parse(window.localStorage.getItem('order'))
+        // carts = global.localStorage.getItem('array')
+        // carts = JSON.parse(global.localStorage.getItem('array'))
+        // console.log(carts)
+    }, [])
     const [createOrderDetailMutation] = useMutation(createOrderDetail)
     const [updateOrderMutation] = useMutation(updateOrder)
     const [deleteCartMutation] = useMutation(deleteCart)
-    const cart = JSON.parse(window.localStorage.getItem('cart'))
-    const order = JSON.parse(window.localStorage.getItem('order'))
-    const carts = JSON.parse(window.localStorage.getItem('array'))
-    console.log(carts)
+    cart =   JSON.parse(window.localStorage.getItem('cart'))
+    order =  JSON.parse(window.localStorage.getItem('order'))
+    carts = JSON.parse(global.localStorage.getItem('array'))
+
+    // console.log(global.localStorage.getItem('order'))
 
     const oDetails = async() => {
         try {
@@ -32,15 +45,15 @@ export const Finalize = () => {
             data: {orderStatus: "PENDING"}
             })
  
-            carts.cart.forEach(async(cart) => {
+            carts.forEach(async(cart) => {
             const deleted = await deleteCartMutation({
                 where: {id: cart.id}
             })
             })
 
-            const list = []
-            window.localStorage.setItem('cart', JSON.stringify(list))
+            const list:Array<Object> = []
             const localOrder = {}
+            window.localStorage.setItem('cart', JSON.stringify(list))
             window.localStorage.setItem('order', JSON.stringify(localOrder))
             window.localStorage.setItem('quantity', '0')
             window.localStorage.setItem('array', JSON.stringify(localOrder))
@@ -59,6 +72,7 @@ export const Finalize = () => {
 }
 
 const Billing:BlitzPage = () => {
+    let carts = JSON.parse(window.localStorage.getItem('array'))
     return (
         <div>
             <Suspense fallback={<div>Loading...</div>}>

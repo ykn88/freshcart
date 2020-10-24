@@ -21,7 +21,7 @@ const Layout = ({ title, children }: LayoutProps) => {
       <Header />
       
       <div style={{backgroundColor:'#F3FCF8'}}></div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   )
 }

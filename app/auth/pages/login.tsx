@@ -3,6 +3,7 @@ import { useRouter, BlitzPage, useQuery } from "blitz"
 import Layout from "app/layouts/Layout"
 import { LoginForm } from "app/auth/components/LoginForm"
 import getCarts from "app/carts/queries/getCarts"
+import Login from "../components/Login"
 
 let cartDb
 let localCart 
@@ -27,7 +28,8 @@ const LoginPage: BlitzPage = () => {
 
   return (
     <div>
-      <LoginForm onSuccess={handleRoute} />
+      {/* <LoginForm onSuccess={handleRoute} /> */}
+      <Login onSuccess={handleRoute}/>
     </div>
   )
 }
