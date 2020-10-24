@@ -1,11 +1,12 @@
-import React from "react"
+import React, { Suspense } from "react"
 import Layout from "app/layouts/Layout"
 import { Link, useRouter, useMutation, BlitzPage } from "blitz"
 import createProduct from "app/products/mutations/createProduct"
 import ProductForm from "app/products/components/ProductForm"
 import Cart from "app/products/components/Cart"
 import Image from "app/products/components/Image"
-import UploadProduct from "app/products/components/UploadProduct"
+import UploadProduct from "app/products/components/adminProducts/UploadProduct"
+import VerifyUser from "app/products/components/adminProducts/VerifyUser"
 
 const NewProductPage: BlitzPage = () => {
   const router = useRouter()
@@ -14,29 +15,9 @@ const NewProductPage: BlitzPage = () => {
   return (
     <div>
       <br/><br/><br/>
-      {/* <h1>Create New Product</h1>
-
-      <ProductForm
-        initialValues={{}}
-        onSubmit={async () => {
-          try {
-            const product = await createProductMutation({ data: { name: "MyName" } })
-            alert("Success!" + JSON.stringify(product))
-            router.push("/products/[productId]", `/products/${product.id}`)
-          } catch (error) {
-            alert("Error creating product " + JSON.stringify(error, null, 2))
-          }
-        }}
-      />
-
-      <p>
-        <Link href="/products">
-          <a>Products</a>
-        </Link>
-      </p>
-
-      <Image /> */}
-      <UploadProduct />
+      <Suspense fallback={<div>Loading...</div>}>
+        <VerifyUser />
+      </Suspense>
     </div>
   )
 }

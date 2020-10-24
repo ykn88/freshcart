@@ -6,7 +6,7 @@ import getCarts from "app/carts/queries/getCarts"
 import Login from "../components/Login"
 
 let cartDb
-let localCart 
+let localCart = []
 let order = {}
 let array = {}
 let amount = 0
@@ -14,22 +14,19 @@ let amount = 0
 const LoginPage: BlitzPage = () => {
   const router = useRouter()
 
-  const handleRoute = () => {
-   
-
-    localCart = JSON.parse(window.localStorage.getItem('cart'))
-
-    
+  const handleRoute = (user) => {
+    window.localStorage.setItem('cart', JSON.stringify(localCart))
     window.localStorage.setItem('quantity', JSON.stringify(amount))
     window.localStorage.setItem('order', JSON.stringify(order))
     window.localStorage.setItem('array', JSON.stringify(array))
-    router.push('/products')
+    if(user.role === 'admin') router.push('/admin')
+    else router.push('/products')
   }
 
   return (
     <div>
       {/* <LoginForm onSuccess={handleRoute} /> */}
-      <Login onSuccess={handleRoute}/>
+      <Login handleRoute={handleRoute}/>
     </div>
   )
 }
