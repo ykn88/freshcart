@@ -34,7 +34,7 @@ const PlaceOrder = ({carts, value} ) => {
           for( let j = 0; j < carts.length; j++ ) {
             if (carts[j].productId === cart[i].productId) {
                 const updated = await updateCartMutation ({
-                  where: { id: carts[j].id},
+                  where: { userId_productId: {userId: cart[1].userId, productId: cart[i].productId}},
                   data: { quantity: cart[i].quantity }
                 })
               console.log(updated)

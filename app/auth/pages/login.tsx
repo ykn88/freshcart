@@ -16,9 +16,10 @@ const LoginPage: BlitzPage = () => {
 
   const handleRoute = (user) => {
     window.localStorage.setItem('cart', JSON.stringify(localCart))
-    window.localStorage.setItem('quantity', JSON.stringify(amount))
+    window.localStorage.setItem('quantity', amount.toString())
     window.localStorage.setItem('order', JSON.stringify(order))
     window.localStorage.setItem('array', JSON.stringify(array))
+    window.localStorage.setItem('amount', amount.toString())
     if(user.role === 'admin') router.push('/admin')
     else router.push('/products')
   }

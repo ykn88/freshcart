@@ -11,43 +11,43 @@ export const Check = ({setFinal}) => {
   let cartList
   let amount = 0
   let check
-  const user = useCurrentUser()
+  // const user = useCurrentUser()
  
   useEffect(() => {
       
   }, [])
 
-  const [{carts}] = useQuery(getCarts, {where: {userId: user?.id}, include:{product:true}})
-  localCart = JSON.parse(window.localStorage.getItem('cart'))
-  lists = localCart
-  cartList = carts
-  console.log(cartList)
-  try {
-    if(lists.length > 0) {
-        lists.forEach(list => amount += list.quantity)
-    }
-    else if(cartList.length > 0) {
-       cartList.forEach(cart => {
-           const item = JSON.parse(window.localStorage.getItem('cart'))
-           const newItem = {
-            quantity: cart.quantity,
-            productId: cart.productId,
-            productPrice: cart.productPrice,
-            userId: cart.userId
-           }
-           item.push(newItem)
-           window.localStorage.setItem('cart', JSON.stringify(item))
-           amount += cart.quantity
-       })
-    }
-    else {
-        amount = 0
-    }
-    window.localStorage.setItem('quantity', amount.toString())
-    setFinal(amount)
- } catch (error) {
-    console.log(error)
-  }
+//   const [{carts}] = useQuery(getCarts,{include:{product:true}})
+//   localCart = JSON.parse(window.localStorage.getItem('cart'))
+//   lists = localCart
+//   cartList = carts
+//   console.log(cartList)
+//   try {
+//     if(lists.length > 0) {
+//         lists.forEach(list => amount += list.quantity)
+//     }
+//     else if(cartList.length > 0) {
+//        cartList.forEach(cart => {
+//            const item = JSON.parse(window.localStorage.getItem('cart'))
+//            const newItem = {
+//             quantity: cart.quantity,
+//             productId: cart.productId,
+//             productPrice: cart.productPrice,
+//             userId: cart.userId
+//            }
+//            item.push(newItem)
+//            window.localStorage.setItem('cart', JSON.stringify(item))
+//            amount += cart.quantity
+//        })
+//     }
+//     else {
+//         amount = 0
+//     }
+//     window.localStorage.setItem('quantity', amount.toString())
+//     setFinal(amount)
+//  } catch (error) {
+//     console.log(error)
+//   }
   return (
     <>
 

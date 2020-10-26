@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styles from '../../styles/Cart.module.scss';
 
 
-const OrderChange = ({basket, setValue, value}) => {
+const OrderChange = ({basket, setValue, value, setFinal, setGrand, final, grand}) => {
     const [quantity, setQuantity] = useState(basket.quantity)
     console.log(basket)
     console.log(value)
@@ -10,6 +10,13 @@ const OrderChange = ({basket, setValue, value}) => {
       setQuantity(quantity + 1)
       setValue(value + 1)
       const cart = JSON.parse(window.localStorage.getItem('cart'))
+      let dummyQuantity = parseInt(window.localStorage.getItem('quantity'))  
+      setFinal(final + 1)
+      window.localStorage.setItem('quantity', (dummyQuantity + 1).toString())  
+      const dummyGrand = parseFloat(window.localStorage.getItem('amount'))
+      setGrand(grand + basket.productPrice)
+      window.localStorage.setItem('amount', (dummyGrand + basket.productPrice).toString())   
+
       cart.forEach(cart => {
         cart.productId === basket.productId && (cart.quantity = quantity + 1 )
       })
@@ -20,6 +27,12 @@ const OrderChange = ({basket, setValue, value}) => {
       setQuantity(quantity - 1)
       setValue(value - 1)
       const cart = JSON.parse(window.localStorage.getItem('cart'))
+      let dummyQuantity = parseInt(window.localStorage.getItem('quantity'))  
+      setFinal(final - 1)
+      window.localStorage.setItem('quantity', (dummyQuantity - 1).toString())  
+      const dummyGrand = parseFloat(window.localStorage.getItem('amount'))
+      setGrand(grand - basket.productPrice)
+      window.localStorage.setItem('amount', (dummyGrand - basket.productPrice).toString())   
       cart.forEach(cart => {
         cart.productId === basket.productId && (cart.quantity = quantity - 1 )
       })

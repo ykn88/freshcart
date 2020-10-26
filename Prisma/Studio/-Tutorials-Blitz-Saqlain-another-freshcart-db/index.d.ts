@@ -545,7 +545,6 @@ export declare type ProductDistinctFieldEnum = (typeof ProductDistinctFieldEnum)
 
 
 export declare const CartDistinctFieldEnum: {
-  id: 'id',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   quantity: 'quantity',
@@ -2842,7 +2841,6 @@ export type ProductArgs = {
  */
 
 export type Cart = {
-  id: number
   createdAt: Date
   updatedAt: Date
   quantity: number | null
@@ -2861,7 +2859,6 @@ export type AggregateCart = {
 }
 
 export type CartAvgAggregateOutputType = {
-  id: number
   quantity: number | null
   productId: number
   productPrice: number
@@ -2869,7 +2866,6 @@ export type CartAvgAggregateOutputType = {
 }
 
 export type CartSumAggregateOutputType = {
-  id: number
   quantity: number | null
   productId: number
   productPrice: number
@@ -2877,7 +2873,6 @@ export type CartSumAggregateOutputType = {
 }
 
 export type CartMinAggregateOutputType = {
-  id: number
   quantity: number | null
   productId: number
   productPrice: number
@@ -2885,7 +2880,6 @@ export type CartMinAggregateOutputType = {
 }
 
 export type CartMaxAggregateOutputType = {
-  id: number
   quantity: number | null
   productId: number
   productPrice: number
@@ -2894,7 +2888,6 @@ export type CartMaxAggregateOutputType = {
 
 
 export type CartAvgAggregateInputType = {
-  id?: true
   quantity?: true
   productId?: true
   productPrice?: true
@@ -2902,7 +2895,6 @@ export type CartAvgAggregateInputType = {
 }
 
 export type CartSumAggregateInputType = {
-  id?: true
   quantity?: true
   productId?: true
   productPrice?: true
@@ -2910,7 +2902,6 @@ export type CartSumAggregateInputType = {
 }
 
 export type CartMinAggregateInputType = {
-  id?: true
   quantity?: true
   productId?: true
   productPrice?: true
@@ -2918,7 +2909,6 @@ export type CartMinAggregateInputType = {
 }
 
 export type CartMaxAggregateInputType = {
-  id?: true
   quantity?: true
   productId?: true
   productPrice?: true
@@ -2950,7 +2940,6 @@ export type GetCartAggregateScalarType<T extends any> = {
     
 
 export type CartSelect = {
-  id?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   quantity?: boolean
@@ -3034,8 +3023,8 @@ export interface CartDelegate {
    * // Get first 10 Carts
    * const carts = await prisma.cart.findMany({ take: 10 })
    * 
-   * // Only select the `id`
-   * const cartWithIdOnly = await prisma.cart.findMany({ select: { id: true } })
+   * // Only select the `createdAt`
+   * const cartWithCreatedAtOnly = await prisma.cart.findMany({ select: { createdAt: true } })
    * 
   **/
   findMany<T extends FindManyCartArgs>(
@@ -5214,7 +5203,6 @@ export type CartWhereInput = {
   AND?: CartWhereInput | Enumerable<CartWhereInput>
   OR?: CartWhereInput | Enumerable<CartWhereInput>
   NOT?: CartWhereInput | Enumerable<CartWhereInput>
-  id?: IntFilter | number
   createdAt?: DateTimeFilter | Date | string
   updatedAt?: DateTimeFilter | Date | string
   quantity?: FloatNullableFilter | number | null
@@ -5226,7 +5214,6 @@ export type CartWhereInput = {
 }
 
 export type CartOrderByInput = {
-  id?: SortOrder
   createdAt?: SortOrder
   updatedAt?: SortOrder
   quantity?: SortOrder
@@ -5236,7 +5223,7 @@ export type CartOrderByInput = {
 }
 
 export type CartWhereUniqueInput = {
-  id?: number
+  userId_productId?: UserIdProductIdCompoundUniqueInput
 }
 
 export type OrderWhereInput = {
@@ -5761,6 +5748,11 @@ export type ProductRelationFilter = {
   isNot?: ProductWhereInput
 }
 
+export type UserIdProductIdCompoundUniqueInput = {
+  userId: number
+  productId: number
+}
+
 export type OrderDetailListRelationFilter = {
   every?: OrderDetailWhereInput
   some?: OrderDetailWhereInput
@@ -6250,7 +6242,6 @@ export type CartScalarWhereInput = {
   AND?: CartScalarWhereInput | Enumerable<CartScalarWhereInput>
   OR?: CartScalarWhereInput | Enumerable<CartScalarWhereInput>
   NOT?: CartScalarWhereInput | Enumerable<CartScalarWhereInput>
-  id?: IntFilter | number
   createdAt?: DateTimeFilter | Date | string
   updatedAt?: DateTimeFilter | Date | string
   quantity?: FloatNullableFilter | number | null
