@@ -9,7 +9,7 @@ import AddCart from './AddCart'
 import ChangeQty from './ChangeQty'
 
 let basket: []
-const ProductList = ({product, grand, user, setFinal, setGrand}) => {
+const ProductList = ({product, grand, user, setFinal, setGrand }) => {
     const [test, setTest] = useState(-1)
     const [amount, setAmount] = useState(product.minQuantity)
     useEffect(() => {
@@ -21,8 +21,9 @@ const ProductList = ({product, grand, user, setFinal, setGrand}) => {
            }
         })
     }, [])
+    setFinal(parseInt(window.localStorage.getItem('quantity')))
+    setGrand(parseFloat(window.localStorage.getItem('amount')))
 
-    
     const [show, setShow] = useState(0)
    
     return (

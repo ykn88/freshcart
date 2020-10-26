@@ -14,16 +14,26 @@ const CartList = ({cart, setValue, value}) => {
     }, [])
     const [basket, setBasket] = useState(cart)
     const [deleteCartMutation] = useMutation(deleteCart)
+    const finalQty = parseInt(window.localStorage.getItem('quantity'))
+    const grandQty = parseFloat(window.localStorage.getItem('amount'))
+    const [final, setFinal] = useState(finalQty)
+    const [grand, setGrand] = useState(grandQty)
     console.log(value)
     const handleClick = async(cart) => {
             totatlList = totatlList.filter(list => list.productId !== basket.productId)
             setValue(value - basket.quantity)
-            setBasket(null)       
+            setBasket(null)
+            const dummyQuantity = final - cart.quantity  
+            setFinal(dummyQuantity)
+            window.localStorage.setItem('quantity', dummyQuantity.toString())  
+            const dummyGrand = grand - cart.quantity * cart.productPrice
+            setGrand(dummyGrand)
+            window.localStorage.setItem('amount', dummyGrand.toString())   
             window.localStorage.setItem('cart', JSON.stringify(totatlList)) 
             console.log(totatlList)
         try {
             const deleted = await deleteCartMutation({
-                where: {id: cart.id}
+                where: {userId_productId: {userId: cart.userId, productId: cart.productId}}
             })
         } catch (error) {
             console.log(error)                     
@@ -49,7 +59,7 @@ const CartList = ({cart, setValue, value}) => {
                                         <h2 className={styles.secondHead}>{basket.product.measure}<span className={styles.span}>{basket.product.price}</span></h2>
                                     </div>
                                     <>
-                                      <OrderChange basket={basket} setValue={setValue} value={value}/>
+                                      <OrderChange basket={basket} setValue={setValue} value={value} setFinal={setFinal} setGrand={setGrand} final={final} grand={grand}/>
                                     </>
                                 </div>
                                 <div className={styles.third}>

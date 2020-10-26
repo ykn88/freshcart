@@ -4,8 +4,8 @@ import React, { useEffect, useState } from 'react'
 import styles from '../../styles/Product.module.scss'
 import getProducts from '../queries/getProducts'
 import ProductList from './ProductList'
-
-const Product = ({setFinal, grand, setGrand}) => {
+let dummyValue =  0
+const Product = ({setFinal, grand, setGrand }) => {
     let basket : []
     const user = useCurrentUser()
     const [{products}] = useQuery(getProducts, {})

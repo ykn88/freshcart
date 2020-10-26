@@ -47,7 +47,7 @@ export const Finalize = () => {
  
             carts.forEach(async(cart) => {
             const deleted = await deleteCartMutation({
-                where: {id: cart.id}
+                where: {userId_productId: {userId: cart.userId, productId: cart.productId}}
             })
             })
 
@@ -56,8 +56,9 @@ export const Finalize = () => {
             window.localStorage.setItem('cart', JSON.stringify(list))
             window.localStorage.setItem('order', JSON.stringify(localOrder))
             window.localStorage.setItem('quantity', '0')
+            window.localStorage.setItem('amount', '0')
             window.localStorage.setItem('array', JSON.stringify(localOrder))
-            Router.push('/products')
+            Router.push('/')
         } catch (error) {
           console.log(error)
       }
